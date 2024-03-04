@@ -16,7 +16,7 @@
     margin: auto;
     max-width: 90%; /* 최대 너비 설정 */
     max-height: 90vh; /* 화면의 높이에 맞춰 최대 높이 설정 */
-    overflow: hidden; /* 내용이 넘칠 경우 숨김 */
+    overflow-y: auto; /* 세로 스크롤 활성화 */
 }
 #chatContainer {
     /* display: flex; */
@@ -33,6 +33,7 @@
 #myStream video, #peerStream video {
     max-width: 100%; /* 부모 요소의 너비를 초과하지 않도록 설정 */
     max-height: 100%; /* 부모 요소의 높이를 초과하지 않도록 설정 */
+    height: auto; /* 비디오 높이를 자동으로 조정하여 비율 유지 */
     object-fit: contain; /* 비디오 비율을 유지하면서 최대 크기에 맞춤 */
 }
 
@@ -116,4 +117,54 @@
 
 #controls button.off, #controls select.off {
     background-color: black; /* 꺼진 상태일 때의 배경색 */
+}
+
+
+/* 모바일 환경에서 적용될 스타일 */
+/* 모바일 환경에서 적용될 스타일 */
+@media screen and (max-width: 768px) {
+    #call {
+        max-width: 10vh; /* 비디오 영역을 최소한으로 설정 */
+        overflow: hidden; /* 비디오가 max-height를 초과할 경우 숨김 처리 */
+    }
+
+    #myStream video, #peerStream video {
+        max-height: 10vh; /* 비디오 최대 높이 설정 */
+    }
+
+    #controls {
+        flex-direction: column; /* 버튼을 가로로 배치 */
+        justify-content: center; /* 버튼을 중앙에 배치 */
+        width: 100%; /* 컨트롤 영역 너비를 최대로 설정 */
+    }
+
+    #mute, #camera {
+        font-size: 0; /* 텍스트 숨김 */
+        width: 2vh; /* 버튼 너비 설정 */
+        height: 2vh; /* 버튼 높이 설정 */
+        border-radius: 50%; /* 원형 버튼으로 설정 */
+    }
+
+    #mute.on, #camera.on {
+        background-color: red; /* 활성 상태일 때 색상 */
+    }
+
+    #mute.off, #camera.off {
+        background-color: gray; /* 비활성 상태일 때 색상 */
+    }
+
+    #chatContainer {
+        max-width: 90vh; /* 채팅 영역을 더 크게 설정 */
+        overflow-y: auto; /* 채팅 영역에 세로 스크롤 활성화 */
+    }
+    #chatForm {
+        flex-direction: column; /* 화면이 작을 때 폼 요소를 세로로 배치 */
+        margin-bottom: 10px; /* 폼 하단 여백 추가 */
+    }
+
+    #chatForm input[type="text"], #chatForm button {
+        width: 100%; /* 입력 필드와 버튼이 폼 너비 전체를 차지하도록 설정 */
+        margin: 5px 0; /* 위아래 마진 추가로 요소 간 간격 조정 */
+    }
+
 }
